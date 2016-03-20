@@ -33,5 +33,4 @@ public class SigninServlet extends HttpServlet {
 
         resp.sendRedirect(req.getContextPath() + "/");
     }
-
 }
