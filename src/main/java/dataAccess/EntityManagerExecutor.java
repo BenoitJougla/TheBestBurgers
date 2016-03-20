@@ -21,7 +21,7 @@ import org.eclipse.persistence.exceptions.DatabaseException;
  */
 class EntityManagerExecutor {
 
-    static final String DEFAULT_PU_NAME = "jpa-exemple";
+    static final String DEFAULT_PU_NAME = "jpa-provider";
     private final String persistenceUnitName;
 
     /**

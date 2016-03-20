@@ -2,23 +2,31 @@ package business;
 
 import com.google.common.base.Preconditions;
 
-import dataAccess.JpaUser;
+import dataAccess.DAOManager;
 import dataAccess.UserBean;
 
 public class User {
 
     private final UserBean userBean;
-    private final JpaUser jpaUser;
 
-    public User(UserBean bean, JpaUser jpa) {
-        Preconditions.checkNotNull(bean, "UserBean");
-        Preconditions.checkNotNull(jpa, "JpaUser");
-        userBean = bean;
-        jpaUser = jpa;
+    public static User getUserByName(String name) {
+        final UserBean bean = DAOManager.getInstance().getUserByName(name);
+
+        if (bean != null) {
+            return new User(bean);
+        }
+
+        return null;
     }
 
-    public User() {
-        this(new UserBean(), new JpaUser());
+    public User(UserBean bean) {
+        Preconditions.checkNotNull(bean, "UserBean");
+        userBean = bean;
+    }
+
+    public User(String name) {
+        userBean = new UserBean();
+        setName(name);
     }
 
     public void setName(String name) {
@@ -30,11 +38,15 @@ public class User {
     }
 
     public void save() {
-        jpaUser.save(userBean);
+        DAOManager.getInstance().saveUser(userBean);
     }
 
     public boolean exists() {
         return userBean.getId() > 0l;
+    }
+
+    public UserBean getBean() {
+        return userBean;
     }
 
 }

@@ -2,7 +2,7 @@
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
-	<persistence-unit name="jpa-exemple" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="jpa-provider" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>dataAccess.BurgerBean</class>
 		<class>dataAccess.GradeBean</class>
@@ -12,7 +12,7 @@
 		<validation-mode>CALLBACK</validation-mode>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:/C:\Users\Augustin\Documents\JEE\TheBestBurgers\dataBase\TheBestBurger.db" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:/C:\Users\Benoit\Dropbox\Isima\zz3\Jee\Tps\Projet_Hamburger\DataBase\datas.db" />
 			<property name="eclipselink.logging.level" value="ALL" />
 			<property name="eclipselink.ddl-generation" value="create-tables" />
 		</properties>

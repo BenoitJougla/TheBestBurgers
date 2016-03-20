@@ -17,7 +17,7 @@ public class UserBean {
     private long id;
 
     @NotNull(message = "Reference obligatoire")
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
     public long getId() {

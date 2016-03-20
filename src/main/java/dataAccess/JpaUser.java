@@ -1,5 +1,7 @@
 package dataAccess;
 
+import javax.persistence.NoResultException;
+
 public class JpaUser implements Dao<UserBean> {
 
     private final EntityManagerExecutor entityManagerExecutor = new EntityManagerExecutor();
@@ -7,6 +9,14 @@ public class JpaUser implements Dao<UserBean> {
     @Override
     public UserBean findById(long id) {
         return entityManagerExecutor.execute(em -> em.createQuery("select u from User u where u.id='" + id + "'", UserBean.class).getSingleResult());
+    }
+
+    public UserBean findByName(String name) {
+        try {
+            return entityManagerExecutor.execute(em -> em.createQuery("select u from User u where u.name='" + name + "'", UserBean.class).getSingleResult());
+        } catch (final NoResultException e) {
+            return null;
+        }
     }
 
     @Override
