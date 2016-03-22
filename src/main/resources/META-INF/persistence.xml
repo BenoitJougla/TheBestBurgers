@@ -12,7 +12,7 @@
 		<validation-mode>CALLBACK</validation-mode>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:/C:\Users\Benoit\Dropbox\Isima\zz3\Jee\Tps\Projet_Hamburger\DataBase\datas.db" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:/C:\Users\Augustin\Desktop\TheBestBurgers\dataBase\TheBestBurger.db" />
 			<property name="eclipselink.logging.level" value="ALL" />
 			<property name="eclipselink.ddl-generation" value="create-tables" />
 		</properties>
