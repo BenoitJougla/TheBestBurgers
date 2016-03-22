@@ -1,4 +1,4 @@
-package dataAccess;
+package beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,22 +8,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Entity(name = "User")
-@Table(name = "USER")
-public class UserBean {
-
+@Entity(name = "Ingredient")
+@Table(name = "INGREDIENT")
+public class IngredientBean implements Bean {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @NotNull(message = "Reference obligatoire")
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     private String name;
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }
@@ -35,5 +36,4 @@ public class UserBean {
     public void setName(String name) {
         this.name = name;
     }
-
 }

@@ -4,28 +4,26 @@ import java.util.List;
 
 import com.google.common.base.Preconditions;
 
-import dataAccess.BurgerBean;
-import dataAccess.IngredientBean;
-import dataAccess.JpaBurger;
+import beans.BurgerBean;
+import beans.GradeBean;
+import beans.IngredientBean;
+import dataAccess.DAOManager;
 
 public class Burger {
 
     private final BurgerBean burgerBean;
-    private final JpaBurger jpaBurger;
 
-    public Burger(BurgerBean bean, JpaBurger jpa) {
+    public Burger(BurgerBean bean) {
         Preconditions.checkNotNull(bean, "BurgerBean");
-        Preconditions.checkNotNull(jpa, "JpaBurger");
         burgerBean = bean;
-        jpaBurger = jpa;
     }
 
     public Burger() {
-        this(new BurgerBean(), new JpaBurger());
+        this(new BurgerBean());
     }
 
     public void save() {
-        jpaBurger.save(burgerBean);
+        DAOManager.getInstance().saveBurger(burgerBean);
     }
 
     public boolean exists() {
@@ -76,6 +74,12 @@ public class Burger {
         final List<IngredientBean> ingredients = burgerBean.getIngredients();
         ingredients.add(i);
         burgerBean.setIngredients(ingredients);
+    }
+    
+    public void addGrade(GradeBean g) {
+        final List<GradeBean> grades = burgerBean.getGrades();
+        grades.add(g);
+        burgerBean.setGrades(grades);
     }
 
 }

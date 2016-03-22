@@ -4,15 +4,15 @@
 	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 	<persistence-unit name="jpa-provider" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>dataAccess.BurgerBean</class>
-		<class>dataAccess.GradeBean</class>
-		<class>dataAccess.IngredientBean</class>
-		<class>dataAccess.RestaurantBean</class>
-		<class>dataAccess.UserBean</class>
+		<class>beans.BurgerBean</class>
+		<class>beans.GradeBean</class>
+		<class>beans.IngredientBean</class>
+		<class>beans.RestaurantBean</class>
+		<class>beans.UserBean</class>
 		<validation-mode>CALLBACK</validation-mode>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:/C:\Users\Augustin\Desktop\TheBestBurgers\dataBase\TheBestBurger.db" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:/D:\document\JEE\TheBestBurgers\dataBase\TheBestBurger.db" />
 			<property name="eclipselink.logging.level" value="ALL" />
 			<property name="eclipselink.ddl-generation" value="create-tables" />
 		</properties>

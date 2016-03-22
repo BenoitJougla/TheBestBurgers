@@ -2,11 +2,16 @@ package business;
 
 import com.google.common.base.Preconditions;
 
-import dataAccess.IngredientBean;
+import beans.IngredientBean;
 
 public class Ingredient {
     private final IngredientBean ingredientBean;
 
+    public Ingredient()
+    {
+    	ingredientBean= new IngredientBean();
+    }
+    
     public Ingredient(IngredientBean bean) {
         Preconditions.checkNotNull(bean, "IngredientBean");
         ingredientBean = bean;
@@ -23,5 +28,9 @@ public class Ingredient {
 
     public String getName() {
         return ingredientBean.getName();
+    }
+    
+    public IngredientBean getBean(){
+    	return ingredientBean;
     }
 }

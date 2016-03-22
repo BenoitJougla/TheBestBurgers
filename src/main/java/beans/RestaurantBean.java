@@ -1,7 +1,8 @@
-package dataAccess;
+package beans;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity(name = "Restaurant")
 @Table(name = "RESTAURANT")
-public class RestaurantBean {
+public class RestaurantBean implements Bean {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -27,7 +28,7 @@ public class RestaurantBean {
     @Column(name = "longitude")
     private double longitude;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<BurgerBean> burgers;
 
     public List<BurgerBean> getBurgers() {
@@ -38,10 +39,12 @@ public class RestaurantBean {
         this.burgers = burgers;
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }

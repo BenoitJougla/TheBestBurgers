@@ -1,4 +1,4 @@
-package dataAccess;
+package beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity(name = "Grade")
 @Table(name = "GRADE")
-public class GradeBean {
+public class GradeBean implements Bean {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,10 +36,12 @@ public class GradeBean {
     @Column(name = "observation")
     private String observation;
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }

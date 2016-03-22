@@ -1,7 +1,9 @@
-package dataAccess;
+package beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,8 +15,13 @@ import javax.validation.constraints.NotNull;
 
 @Entity(name = "Burger")
 @Table(name = "BUGER")
-public class BurgerBean {
+public class BurgerBean implements Bean {
 
+	public BurgerBean() {
+		ingredients = new ArrayList<IngredientBean>();
+		grades = new ArrayList<GradeBean>();
+	}
+	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -27,13 +34,21 @@ public class BurgerBean {
     @Column(name = "picture")
     private String picture;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<IngredientBean> ingredients;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<GradeBean> grades;
 
-    public List<IngredientBean> getIngredients() {
+    public List<GradeBean> getGrades() {
+		return grades;
+	}
+
+	public void setGrades(List<GradeBean> grades) {
+		this.grades = grades;
+	}
+
+	public List<IngredientBean> getIngredients() {
         return ingredients;
     }
 
@@ -41,10 +56,12 @@ public class BurgerBean {
         this.ingredients = ingredients;
     }
 
+    @Override
     public long getId() {
         return id;
     }
 
+    @Override
     public void setId(long id) {
         this.id = id;
     }

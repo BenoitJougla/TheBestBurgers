@@ -2,8 +2,8 @@ package business;
 
 import com.google.common.base.Preconditions;
 
+import beans.UserBean;
 import dataAccess.DAOManager;
-import dataAccess.UserBean;
 
 public class User {
 
