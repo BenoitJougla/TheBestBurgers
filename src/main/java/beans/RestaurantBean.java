@@ -72,5 +72,4 @@ public class RestaurantBean implements Bean {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
-
 }
