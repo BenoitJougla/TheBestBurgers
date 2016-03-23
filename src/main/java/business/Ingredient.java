@@ -3,6 +3,7 @@ package business;
 import com.google.common.base.Preconditions;
 
 import beans.IngredientBean;
+import dataAccess.DAOManager;
 
 public class Ingredient {
     private final IngredientBean ingredientBean;
@@ -30,7 +31,19 @@ public class Ingredient {
         return ingredientBean.getName();
     }
     
+    public String getPicture(){
+    	return ingredientBean.getPicture();
+    }
+    
+    public void setPicture(String picture){
+    	ingredientBean.setPicture(picture);
+    }
+    
     public IngredientBean getBean(){
     	return ingredientBean;
+    }
+    
+    public void save (){
+    	DAOManager.getInstance().saveIngredient(ingredientBean);
     }
 }

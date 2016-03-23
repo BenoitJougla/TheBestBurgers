@@ -1,9 +1,11 @@
 package dataAccess;
 
 import beans.BurgerBean;
+import beans.IngredientBean;
 import beans.RestaurantBean;
 import beans.UserBean;
 import business.Burger;
+import business.Ingredient;
 import business.Restaurant;
 
 public class DAOManager {
@@ -12,11 +14,13 @@ public class DAOManager {
     private final JpaUser jpaUser;
     private final JpaBurger jpaBurger;
     private final JpaRestaurant jpaRestaurant;
+    private final JpaIngredient jpaIngredient;
 
     private DAOManager() {
         jpaUser = new JpaUser();
         jpaBurger = new JpaBurger();
         jpaRestaurant = new JpaRestaurant();
+        jpaIngredient = new JpaIngredient();
     }
 
     public static DAOManager getInstance() {
@@ -69,5 +73,18 @@ public class DAOManager {
 
     public void saveRestaurant(RestaurantBean bean) {
         jpaRestaurant.save(bean);
+    }
+    
+    // Ingredient
+    public Ingredient getIngredientById(long id){
+    	final IngredientBean bean = jpaIngredient.findById(id);
+    	if(bean != null){
+    		return new Ingredient(bean);
+    	}
+    	return null;
+    }
+    
+    public void saveIngredient (IngredientBean bean){
+    	jpaIngredient.save(bean);
     }
 }

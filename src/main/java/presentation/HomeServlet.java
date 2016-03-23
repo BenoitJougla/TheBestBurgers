@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import business.Burger;
 import business.Grade;
 import business.Ingredient;
+import business.User;
 import dataAccess.DAOManager;
 
 @WebServlet("/home")
@@ -19,9 +20,9 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        /*final User user = new User("augustin");
+        final User user = new User("augustin");
         user.setName("augustin");
-        user.save();*/
+        user.save();
 
         Burger b = new Burger();
         final Grade g = new Grade();
@@ -43,7 +44,7 @@ public class HomeServlet extends HttpServlet {
         
         b = DAOManager.getInstance().getBurgerById(b.getId());
         
-        resp.getWriter().write(b.getName()+" - "+b.getId());
+        resp.getWriter().write(User.getUserByName("augustin").getName());
         
 
     }

@@ -1,6 +1,7 @@
 package dataAccess;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,7 +62,19 @@ class EntityManagerExecutor {
         }
         return call;
     }
+    
+    public <T> List<T> findAllEntity(String entity) {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistenceUnitName");
+        final EntityManager entityManager = factory.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+        List<T> listEntity = entityManager.createQuery("SELECT * FROM "+ entity).getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        factory.close();
 
+        return listEntity;
+    }
     private <T> T write(CalledDuringTransaction<T> calledDuringTransaction) {
 
         try {

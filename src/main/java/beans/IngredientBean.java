@@ -18,8 +18,19 @@ public class IngredientBean implements Bean {
     @NotNull(message = "Reference obligatoire")
     @Column(name = "name")
     private String name;
+    
+    @Column(name = "picture")
+    private String picture;
 
-    @Override
+    public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	@Override
     public long getId() {
         return id;
     }
