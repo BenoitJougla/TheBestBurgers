@@ -1,25 +1,32 @@
 package business;
 
+import java.util.List;
+
 import com.google.common.base.Preconditions;
 
 import beans.IngredientBean;
 import dataAccess.DAOManager;
+import dataAccess.JpaIngredient;
 
 public class Ingredient {
     private final IngredientBean ingredientBean;
+    private final JpaIngredient jpaIngredient;
 
     public Ingredient()
     {
-    	ingredientBean= new IngredientBean();
+    	ingredientBean = new IngredientBean();
+    	jpaIngredient = new JpaIngredient();
     }
     
     public Ingredient(IngredientBean bean) {
         Preconditions.checkNotNull(bean, "IngredientBean");
+        jpaIngredient = new JpaIngredient();
         ingredientBean = bean;
     }
 
     public Ingredient(String name) {
         ingredientBean = new IngredientBean();
+        jpaIngredient = new JpaIngredient();
         setName(name);
     }
 
@@ -45,5 +52,9 @@ public class Ingredient {
     
     public void save (){
     	DAOManager.getInstance().saveIngredient(ingredientBean);
+    }
+    
+    public List<Ingredient> getAllIngredients(){
+    	return DAOManager.getInstance().getAllIngredients();
     }
 }

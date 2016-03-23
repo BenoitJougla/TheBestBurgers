@@ -19,7 +19,7 @@ public class RestaurantBean implements Bean {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @NotNull(message = "Reference obligatoire")
-    @Column(name = "name")
+    @Column(name = "name", unique=true)
     private String name;
     @NotNull(message = "Reference obligatoire")
     @Column(name = "latitude")

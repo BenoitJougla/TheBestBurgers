@@ -1,5 +1,7 @@
 package dataAccess;
 
+import java.util.List;
+
 import beans.BurgerBean;
 import beans.IngredientBean;
 import beans.RestaurantBean;
@@ -86,5 +88,9 @@ public class DAOManager {
     
     public void saveIngredient (IngredientBean bean){
     	jpaIngredient.save(bean);
+    }
+    
+    public List<Ingredient> getAllIngredients(){
+    	return jpaIngredient.findAllIngredients();
     }
 }

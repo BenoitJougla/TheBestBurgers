@@ -1,5 +1,6 @@
 package dataAccess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -22,8 +23,11 @@ public class JpaIngredient implements Dao<IngredientBean> {
     }
     
     public List<Ingredient> findAllIngredients(){
-    	try{
-    		return (List<Object>) entityManagerExecutor.findAllEntity("Ingredient");
-    	}
+		List<IngredientBean> listBean = entityManagerExecutor.execute(em -> em.createQuery("select i from Ingredient i", IngredientBean.class).getResultList());
+		List<Ingredient> list = new ArrayList<Ingredient>();
+		for(IngredientBean i : listBean){
+			list.add(new Ingredient(i));
+		}
+		return list;
     }
 }

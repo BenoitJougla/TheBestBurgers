@@ -63,18 +63,6 @@ class EntityManagerExecutor {
         return call;
     }
     
-    public <T> List<T> findAllEntity(String entity) {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistenceUnitName");
-        final EntityManager entityManager = factory.createEntityManager();
-        entityManager.getTransaction().begin();
-        
-        List<T> listEntity = entityManager.createQuery("SELECT * FROM "+ entity).getResultList();
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        factory.close();
-
-        return listEntity;
-    }
     private <T> T write(CalledDuringTransaction<T> calledDuringTransaction) {
 
         try {

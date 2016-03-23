@@ -19,7 +19,7 @@ public class IngredientBean implements Bean {
     @Column(name = "name")
     private String name;
     
-    @Column(name = "picture")
+    @Column(name = "picture", unique=true)
     private String picture;
 
     public String getPicture() {

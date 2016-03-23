@@ -46,6 +46,8 @@ public class HomeServlet extends HttpServlet {
         
         resp.getWriter().write(User.getUserByName("augustin").getName());
         
+        resp.getWriter().write(i.getAllIngredients().toString());
+        
 
     }
 
