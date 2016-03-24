@@ -58,6 +58,10 @@ public class DAOManager {
 
         return null;
     }
+    
+    public Burger getBurgerByName(String name){
+    	return jpaBurger.findByName(name);
+    }
 
     public void saveBurger(BurgerBean bean) {
         jpaBurger.save(bean);
