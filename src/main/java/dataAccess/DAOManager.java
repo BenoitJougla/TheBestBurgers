@@ -1,5 +1,6 @@
 package dataAccess;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import beans.BurgerBean;
@@ -75,6 +76,10 @@ public class DAOManager {
         }
 
         return null;
+    }
+    public List<Restaurant> getAllRestaurants(){
+    	return jpaRestaurant.findAllRestaurants();
+    	
     }
 
     public void saveRestaurant(RestaurantBean bean) {

@@ -9,13 +9,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.BurgerBean;
+import business.Burger;
+
 
 @WebServlet("/burger")
 public class BurgerServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        String picture = request.getParameter("picture");
+        
+        if(name != null && description != null && picture != null){
+        	
+        	BurgerBean burgerBean = new BurgerBean();
+        	burgerBean.setName(name);
+        	burgerBean.setDescription(description);
+        	burgerBean.setPicture(picture);
+        	Burger b = new Burger(burgerBean);
+        	b.save();
+        }
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
     
     @Override

@@ -26,6 +26,10 @@ a {
 	margin-bottom: 10px;
 }
 
+.margin{
+	margin-top: 25%;
+}
+
 /*Nav Banner*/
 #collapse-text {
   color: #fff;
@@ -182,6 +186,10 @@ a {
   #central-form{
   	margin-top: 15%;
   }
+  
+  .margin{
+	margin-top: 15%;
+}
 
 }
 
