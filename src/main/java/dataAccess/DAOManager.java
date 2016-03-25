@@ -1,6 +1,5 @@
 package dataAccess;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import beans.BurgerBean;
@@ -59,9 +58,9 @@ public class DAOManager {
 
         return null;
     }
-    
-    public Burger getBurgerByName(String name){
-    	return jpaBurger.findByName(name);
+
+    public Burger getBurgerByName(String name) {
+        return jpaBurger.findByName(name);
     }
 
     public void saveBurger(BurgerBean bean) {
@@ -77,29 +76,30 @@ public class DAOManager {
 
         return null;
     }
-    public List<Restaurant> getAllRestaurants(){
-    	return jpaRestaurant.findAllRestaurants();
-    	
+
+    public List<Restaurant> getAllRestaurants() {
+        return jpaRestaurant.findAllRestaurants();
+
     }
 
     public void saveRestaurant(RestaurantBean bean) {
         jpaRestaurant.save(bean);
     }
-    
+
     // Ingredient
-    public Ingredient getIngredientById(long id){
-    	final IngredientBean bean = jpaIngredient.findById(id);
-    	if(bean != null){
-    		return new Ingredient(bean);
-    	}
-    	return null;
+    public Ingredient getIngredientById(long id) {
+        final IngredientBean bean = jpaIngredient.findById(id);
+        if (bean != null) {
+            return new Ingredient(bean);
+        }
+        return null;
     }
-    
-    public void saveIngredient (IngredientBean bean){
-    	jpaIngredient.save(bean);
+
+    public void saveIngredient(IngredientBean bean) {
+        jpaIngredient.save(bean);
     }
-    
-    public List<Ingredient> getAllIngredients(){
-    	return jpaIngredient.findAllIngredients();
+
+    public List<Ingredient> getAllIngredients() {
+        return jpaIngredient.findAllIngredients();
     }
 }
