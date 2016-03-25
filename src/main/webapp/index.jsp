@@ -5,23 +5,15 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		
+		<!-- Include all the css and js file -->
 		<%@include file="WEB-INF/header.jsp" %>
 		<title>The Best Burger</title>
 	</head>
 	
 	<body>
-	
+		<!-- Include of the navBar -->
 		<%@include file="WEB-INF/masterPage.jsp" %>
-		
-		<c:choose>
-			<c:when test="${empty user}">
-				<a href="${pageContext.request.contextPath}/signin.jsp">Se connecter</a>
-			</c:when>    
-			<c:otherwise>
-				${user.name}
-				<a href="${pageContext.request.contextPath}/logout">Se déconnecter</a>
-			</c:otherwise>
-		</c:choose>
 	
 	</body>
 </html>

@@ -11,6 +11,21 @@ a {
   color: #fff;
 }
 
+.btn-primary {
+    background-color: #f47321;
+    border-color: #7d3f15;
+}
+
+.btn-primary:hover {
+    background-color: #7d3f15;
+    border-color: #f47321;
+}
+
+.input{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
 /*Nav Banner*/
 #collapse-text {
   color: #fff;
@@ -104,10 +119,34 @@ a {
 }
 
 .input-group {
-    width: 230px;
+    width: 245px;
     margin-top: 8px;
     padding-right: 15px;
 }
+
+#sub-ban{
+    height: 100px;
+    position: absolute;
+    background-color: #7d3f15;
+    width: 100%;
+    z-index: -1;
+}
+
+#sub-ban p{
+    margin-top: 65px;
+    float: right;
+    margin-right: 10px;
+    color: white;
+}
+
+/*Form jsp*/
+
+#central-form{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 15%;
+}
+
 
 /*media querys*/
 @media (min-width: 768px) {
@@ -120,7 +159,7 @@ a {
   }
 
   .input-group {
-      width: 200px;
+      width: 245px;
       margin-top: 8px;
       padding-right: 15px;
   }

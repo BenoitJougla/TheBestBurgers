@@ -4,19 +4,20 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<!-- Bootstrap core CSS -->
-		<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1">		
+		<!-- Include all the css and js file -->
+		<%@include file="WEB-INF/header.jsp" %>		
 		<title>Connexion</title>
 	</head>
 	
 	<body>
 		
+		<!-- Include of the navBar -->
+		<%@include file="WEB-INF/masterPage.jsp" %>
+		
 		<div class="container">
 		
-			<form class="form-signin" method="post" action="${pageContext.request.contextPath}/signin">
+			<form id="central-form" class="form-signin" method="post" action="${pageContext.request.contextPath}/signin">
 				<h2 class="form-signin-heading">Se connecter</h2>
 				
 				<label for="inputName" class="sr-only">Pseudonyme</label>
