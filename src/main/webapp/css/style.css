@@ -144,7 +144,18 @@ a {
 #central-form{
     width: 50%;
     margin-left: 25%;
-    margin-top: 15%;
+    margin-top: 25%;
+}
+
+/* Form add restaurent */
+#latitude{
+	width: 49%;
+	float: left;
+}
+
+#longitude{
+	width: 49%;
+	float: right;
 }
 
 
@@ -166,6 +177,10 @@ a {
 
   #admin-link{
     display: none;
+  }
+  
+  #central-form{
+  	margin-top: 15%;
   }
 
 }
