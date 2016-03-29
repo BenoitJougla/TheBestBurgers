@@ -16,21 +16,21 @@ public class IngredientBean implements Bean {
     private long id;
 
     @NotNull(message = "Reference obligatoire")
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
-    
-    @Column(name = "picture", unique=true)
+
+    @Column(name = "picture")
     private String picture;
 
     public String getPicture() {
-		return picture;
-	}
+        return picture;
+    }
 
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
-	@Override
+    @Override
     public long getId() {
         return id;
     }

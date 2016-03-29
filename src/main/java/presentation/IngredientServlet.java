@@ -1,6 +1,7 @@
 package presentation;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,27 +9,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import business.Ingredient;
+import com.google.gson.Gson;
 
-@WebServlet("/ingredient")
+import business.Ingredient;
+import dataAccess.DAOManager;
+
+@WebServlet("/ingredients")
 public class IngredientServlet extends HttpServlet {
 
-	@Override
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/addIngredient.jsp").forward(req, resp);
-	}
-	
+        final List<Ingredient> ingredientsList = DAOManager.getInstance().getAllIngredients();
+
+        final String json = new Gson().toJson(ingredientsList);
+        resp.getOutputStream().write(json.getBytes());
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String name = req.getParameter("name");
         final String picture = req.getParameter("picture");
 
         final Ingredient ingredient = new Ingredient(name);
-        
-        if(picture != null)
-        	ingredient.setPicture(picture);
-        
-        ingredient.save();
+
+        if (picture != null) {
+            ingredient.setPicture(picture);
+        }
+
+        try {
+            ingredient.save();
+        } catch (final dataAccess.UniqueConstraintException e) {
+            resp.sendError(500, name + " already exist");
+        }
+
     }
-	
+
 }
