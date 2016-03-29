@@ -32,7 +32,7 @@ public class BurgerServlet extends HttpServlet {
         	Burger b = new Burger(burgerBean);
         	b.save();
         }
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/").forward(request, response);
     }
     
     @Override

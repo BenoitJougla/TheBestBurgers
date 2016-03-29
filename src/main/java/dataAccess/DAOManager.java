@@ -66,6 +66,10 @@ public class DAOManager {
     public void saveBurger(BurgerBean bean) {
         jpaBurger.save(bean);
     }
+    
+    public List<Burger> getAllBurgers(){
+    	return jpaBurger.findAllBurgers();
+    }
 
     // Restaurant
     public Restaurant getRestaurantById(long id) {

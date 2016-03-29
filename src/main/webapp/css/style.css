@@ -161,6 +161,39 @@ a {
 	float: right;
 }
 
+/* home.jsp */
+.img-container {
+    position: relative;
+    width: 350px;
+    height: 200px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.burger-img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+  cursor: pointer;
+}
+
+.burger-img:hover {	
+	height: 130%;
+	opacity: 0.5;
+	-webkit-transition: all 500ms ease-out;
+	-moz-transition: all 500ms ease-out;
+	-ms-transition: all 500ms ease-out;
+	-o-transition: all 500ms ease-out;
+	transition: all 500ms ease-out
+}
+
 
 /*media querys*/
 @media (min-width: 768px) {

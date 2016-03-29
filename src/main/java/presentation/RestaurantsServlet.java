@@ -29,12 +29,7 @@ public class RestaurantsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final List<Restaurant> restaurantsList = DAOManager.getInstance().getAllRestaurants();
-
-        req.setAttribute("restaurants", restaurantsList);
-
-        final RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/restaurants.jsp");
-        rd.forward(req, resp);
+    	doGet(req, resp);
     }
 
 }
