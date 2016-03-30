@@ -5,30 +5,31 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<!-- Include all the css and js file -->
+		<%@include file="WEB-INF/header.jsp" %>
+		
 		<title>The Best Burger</title>
 	</head>
 	
 	<body>
 		<!-- Include of the navBar -->
 		<%@include file="WEB-INF/masterPage.jsp" %>
-	
-		<div class="row">
-			<c:forEach items="${burgers}" var="burger">
-				<div class="col-sm-6 col-md-4">
-					<div class="thumbnail">
-					<div class="img-container"><img class="burger-img" src="${burger.picture}" alt="burger picture"></div>
-						<div class="caption">
-							<h3>${burger.name}</h3>
-							<p>${burger.description}</p>
-							<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+		<div class="container">
+			<h2>Nos Burgers :</h2>
+			<div class="row">
+				<c:forEach items="${burgers}" var="burger">
+					<div class="col-sm-6 col-md-4">
+						<div onclick="displayDetail('${burger.id}')" class="thumbnail">
+						<div class="img-container"><img class="burger-img" src="${burger.picture}" alt="burger picture"></div>
+							<div class="caption">
+								<h3>${burger.name}</h3>
+								<p>${burger.description}</p>
+								<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+							</div>
 						</div>
-					</div>
-			  	</div>
-			 </c:forEach>
+				  	</div>
+				 </c:forEach>
+			</div>
 		</div>
-		
-		<!-- Include all the css and js file -->
-		<%@include file="WEB-INF/header.jsp" %>
-		
 	</body>
 </html>
