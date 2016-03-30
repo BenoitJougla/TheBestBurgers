@@ -20,7 +20,6 @@ public class IngredientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final List<Ingredient> ingredientsList = DAOManager.getInstance().getAllIngredients();
-
         final String json = new Gson().toJson(ingredientsList);
         resp.getOutputStream().write(json.getBytes());
     }
@@ -38,10 +37,9 @@ public class IngredientServlet extends HttpServlet {
 
         try {
             ingredient.save();
-        } catch (final dataAccess.UniqueConstraintException e) {
+        } catch (final RuntimeException e) {
             resp.sendError(500, name + " already exist");
         }
-
     }
 
 }

@@ -7,7 +7,7 @@
 		<!-- Include all the css and js file -->
 		<%@include file="header.jsp" %>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/js/toggleVisibility.js"></script>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/js/ingredientsManager.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/js/addBurger.js"></script>
 		<title>Nouveau burger</title>
 	</head>
 	
@@ -30,22 +30,35 @@
 						<legend>Ajouter les ingrédients</legend>
 				
 						<div id="listIngredients"></div>
+						<input id="ingredientToggleForm" class="showButton" onclick = "toggle('newIngredient', 'ingredientToggleForm', 'hideButton', 'showButton');"/>
 						
-						<input type="image" src="${pageContext.request.contextPath}/img/plus_orange.png" height="50px" width="50px" onclick = "toggle('newIngredient');"/>
+						<div id="newIngredient" style="display: none">
+							<h1>Nouveau ingrédient</h1>
+							<input id="ingredientName" type="text" placeholder="Name">
+							<p><input id="ingredientPicture" type="text" placeholder="Picture">(facultatif)</p>
+							<button onclick = "addIngredient()">Valider</button>
+						</div>
+					</fieldset>
+					
+					<fieldset>
+						<legend>Choisisser un restaurant</legend>
+						
+						<select id="listRestaurants"></select>
+						<input id='restaurantToggleForm' class="showButton" onclick = "toggle('newRestaurant', 'restaurantToggleForm', 'hideButton', 'showButton');"/>
+						
+						<div id="newRestaurant" style="display: none">
+							<h1>Nouveau Restaurant</h1>
+							<input id="restaurantName" class="input" type="text" placeholder="Nom" required autofocus>
+							<p>Localisation du restaurant :</p>
+							<input id="restaurantLatitude" class="input" type="text" placeholder="Latitude" required>
+							<input id="restaurantLongitude" class="input" type="text" placeholder="Longitude" required>
+							<button onclick="addRestaurant()">Valider</button>
+						</div>
 					</fieldset>
 					
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Ajouter</button>
 				</fieldset>
 			</form>
-			
-			<div id="newIngredient" style="visibility:hidden;">
-				<div>
-					<h1>Nouveau ingrédient</h1>
-					<input id="ingredientName" name="name" type="text" placeholder="Name">
-					<p><input id="ingredientPicture" name="picture" type="text" placeholder="Picture">(facultatif)</p>
-					<button type="submit" onclick = "addIngredient()">Valider</button>
-				</div>
-			</div>
 		</div>	
 	</body>
 </html>

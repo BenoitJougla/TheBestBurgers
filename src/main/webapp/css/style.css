@@ -241,5 +241,22 @@ a {
 	-ms-transition: all 300ms ease-in-out;
 	-o-transition: all 300ms ease-in-out;
 	transition: all 300ms ease-in-out;
+}
 
+.hideButton {
+	background:url(../img/moins_orange.jpg);
+	background-repeat: no-repeat;
+	background-size: 50px 50px;
+	width:50px;
+	height:50px;
+	border: 0;
+}
+
+.showButton {
+	background:url(../img/plus_orange.png);
+	background-repeat: no-repeat;
+	background-size: 50px 50px;
+	width:50px;
+	height:50px;
+	border: 0;
 }

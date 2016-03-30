@@ -1,21 +1,23 @@
 function Hide(addr) 
 {
-	document.getElementById(addr).style.visibility = "hidden";	
+	document.getElementById(addr).style.display = "none";	
 }
 
 function Show(addr) 
 {
-	document.getElementById(addr).style.visibility = "visible";	
+	document.getElementById(addr).style.display = "block";	
 }
 
-function toggle(anId)
+function toggle(anId, button, hideclass, showclass)
 {
-	if (document.getElementById(anId).style.visibility == "hidden")
-	{	
+	if (document.getElementById(anId).style.display == "none")
+	{
+		document.getElementById(button).className  = hideclass;
 		Show(anId);	
 	}
 	else
 	{	
+		document.getElementById(button).className  = showclass;
 		Hide(anId);	
 	}
 }

@@ -3,7 +3,6 @@
     
 <!-- Scripts include -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-2.2.0.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/smartcrop.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/app.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
