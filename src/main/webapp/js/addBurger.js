@@ -85,6 +85,36 @@ function addRestaurant() {
 	addRequest('restaurant', data, success_fct, error_fct);
 }
 
+/*
+ * Burger
+ */
+
+function addBurger() {
+	var ingredientsList = $('#listIngredients').find('input:checked');
+	var ingredientsTab = [];
+	$.each(ingredientsList, function(i, item) {
+		ingredientsTab.push(item.value);
+	});
+	
+	var originalityNote  = $('#originality').find('input:checked').val();
+	var qualityNote		 = $('#quality').find('input:checked').val();
+	var presentationNote = $('#presentation').find('input:checked').val();
+	var tastyNote		 = $('#tasty').find('input:checked').val();
+	
+	var data = {
+		name		 : $('#burgerName').val(), 
+		latitude	 : $('#burgerDescription').val(), 
+		longitude	 : $('#burgerPicture').val(),
+		ingredients	 : ingredientsTab,
+		restaurant	 : $('#listRestaurants').val(),
+		originality	 : originalityNote,
+		quality		 : qualityNote,
+		presentation : presentationNote,
+		tasty		 : tastyNote,
+		observation	 : $('#gradeDescription').val()
+	};
+}
+
 $(document).ready(function() {
 	getIngredients();
 	getRestaurants();

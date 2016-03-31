@@ -263,6 +263,7 @@ a {
 
 .rating {
    direction: rtl;
+   display: inline-block;
 }
 
 .rating label {
@@ -284,4 +285,8 @@ a {
 .rating input:checked ~ label {
    color: orange;
    cursor: pointer;
+}
+
+.gradeLabel {
+	width: 50%;
 }

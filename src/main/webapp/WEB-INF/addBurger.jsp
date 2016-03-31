@@ -16,13 +16,13 @@
 		<%@include file="masterPage.jsp" %>
 	
 		<div class="container">
-			<form id="central-form"  method="post" action="${pageContext.request.contextPath}/burger">
+			<div id="central-form">
 				<fieldset>
 					<fieldset>
 						<legend>Ajouter un nouveau burger</legend>
-						<input id="name" name="name" class="input" type="text" placeholder="Nom" required autofocus>
-						<textarea id="description" name="description" class="input" type="text" placeholder="Description" required></textarea>
-						<input id="picture" name="picture" class="input" type="text" placeholder="URL de la photo" required>
+						<input id="burgerName" class="input" type="text" placeholder="Nom" required autofocus>
+						<textarea id="burgerDescription" class="input" type="text" placeholder="Description" required></textarea>
+						<input id="burgerPicture" class="input" type="text" placeholder="URL de la photo" required>
 					</fieldset>
 					
 					<fieldset>
@@ -58,32 +58,40 @@
 					<fieldset>
 						<legend>Noter le burger</legend>
 						
-						<label>Originalité</label>
-						<jsp:include page="rating.jsp">
-							<jsp:param name="id" value="originality"/>
-						</jsp:include>
+						<div id="originality">
+							<label class="gradeLabel">Originalité</label>
+							<jsp:include page="rating.jsp">
+								<jsp:param name="id" value="originality"/>
+							</jsp:include>
+						</div>
 						
-						<label>Qualité des ingrèdients</label>
-						<jsp:include page="rating.jsp">
-							<jsp:param name="id" value="quality"/>
-						</jsp:include>
+						<div id="quality">
+							<label class="gradeLabel">Qualité des ingrèdients</label>
+							<jsp:include page="rating.jsp">
+								<jsp:param name="id" value="quality"/>
+							</jsp:include>
+						</div>
 						
-						<label>Présentation</label>
-						<jsp:include page="rating.jsp">
-							<jsp:param name="id" value="presentation"/>
-						</jsp:include>
+						<div id="presentation">
+							<label class="gradeLabel">Présentation</label>
+							<jsp:include page="rating.jsp">
+								<jsp:param name="id" value="presentation"/>
+							</jsp:include>
+						</div>
 						
-						<label>Goût</label>
-						<jsp:include page="rating.jsp">
-							<jsp:param name="id" value="tasty"/>
-						</jsp:include>
+						<div id="tasty">
+							<label class="gradeLabel">Goût</label>
+							<jsp:include page="rating.jsp">
+								<jsp:param name="id" value="tasty"/>
+							</jsp:include>
+						</div>
 						
-						<textarea type="text"  class="input" placeholder="Observation"></textarea>
+						<textarea id="gradeDescription" type="text"  class="input" placeholder="Observation"></textarea>
 					</fieldset>
 					
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Ajouter</button>
+					<button class="btn-primary" onclick="addBurger()">Ajouter</button>
 				</fieldset>
-			</form>
+			</div>
 		</div>	
 	</body>
 </html>
