@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
         
         <nav class="navbar custom-navbar navbar-fixed-top">
@@ -36,7 +35,7 @@
 										<li><a href="#">Modifier un Restaurant</a></li>
 										<li role="separator" class="divider"></li>
 										<li><a href="#">Mes commentaires</a></li>
-										<li><a href="${pageContext.request.contextPath}/logout">Déconnexion</a></li>
+										<li><a href="${pageContext.request.contextPath}/logout">DÃ©connexion</a></li>
 									</c:otherwise>
 								</c:choose>
 						  </ul>

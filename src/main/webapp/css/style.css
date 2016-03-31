@@ -260,3 +260,28 @@ a {
 	height:50px;
 	border: 0;
 }
+
+.rating {
+   direction: rtl;
+}
+
+.rating label {
+   color: #aaa;
+   text-decoration: none;
+   font-size: 3em;
+   transition: color .4s;
+}
+
+.rating input {
+  float: right;
+  opacity: 0;
+  position: absolute;
+}
+
+.rating label:hover ~ label,
+.rating input:focus ~ label,
+.rating label:hover,
+.rating input:checked ~ label {
+   color: orange;
+   cursor: pointer;
+}
