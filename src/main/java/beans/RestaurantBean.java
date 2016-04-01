@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,7 +20,7 @@ public class RestaurantBean implements Bean {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @NotNull(message = "Reference obligatoire")
-    @Column(name = "name", unique=true)
+    @Column(name = "name", unique = true)
     private String name;
     @NotNull(message = "Reference obligatoire")
     @Column(name = "latitude")
@@ -27,9 +28,12 @@ public class RestaurantBean implements Bean {
     @NotNull(message = "Reference obligatoire")
     @Column(name = "longitude")
     private double longitude;
-
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<BurgerBean> burgers;
+
+    public RestaurantBean() {
+        burgers = new ArrayList<>();
+    }
 
     public List<BurgerBean> getBurgers() {
         return burgers;
@@ -71,5 +75,15 @@ public class RestaurantBean implements Bean {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public void addBurger(BurgerBean burger) {
+        burgers.add(burger);
+        burger.setRestaurant(this);
+    }
+
+    public void removeBurger(BurgerBean burger) {
+        burgers.remove(burger);
+        burger.setRestaurant(null);
     }
 }

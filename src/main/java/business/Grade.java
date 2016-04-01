@@ -6,7 +6,7 @@ import beans.GradeBean;
 
 public class Grade {
 
-	private final GradeBean gradeBean;
+    private final GradeBean gradeBean;
 
     public Grade(GradeBean bean) {
         Preconditions.checkNotNull(bean, "GradeBean");
@@ -16,7 +16,7 @@ public class Grade {
     public Grade() {
         this(new GradeBean());
     }
-	
+
     public long getId() {
         return gradeBean.getId();
     }
@@ -64,8 +64,16 @@ public class Grade {
     public void setObservation(String observation) {
         gradeBean.setObservation(observation);
     }
-    
-    public GradeBean getBean(){
-    	return gradeBean;
+
+    public GradeBean getBean() {
+        return gradeBean;
+    }
+
+    public User getUser() {
+        return new User(gradeBean.getUser());
+    }
+
+    public Burger getBurger() {
+        return new Burger(gradeBean.getBurger());
     }
 }

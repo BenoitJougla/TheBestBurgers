@@ -1,10 +1,12 @@
 package beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -35,6 +37,12 @@ public class GradeBean implements Bean {
     @NotNull(message = "Reference obligatoire")
     @Column(name = "observation")
     private String observation;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private UserBean user;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private BurgerBean burger;
 
     @Override
     public long getId() {
@@ -84,6 +92,22 @@ public class GradeBean implements Bean {
 
     public void setObservation(String observation) {
         this.observation = observation;
+    }
+
+    public UserBean getUser() {
+        return user;
+    }
+
+    public void setUser(UserBean user) {
+        this.user = user;
+    }
+
+    public BurgerBean getBurger() {
+        return burger;
+    }
+
+    public void setBurger(BurgerBean burger) {
+        this.burger = burger;
     }
 
 }

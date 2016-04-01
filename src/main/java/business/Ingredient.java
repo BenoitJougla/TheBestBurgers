@@ -6,28 +6,26 @@ import com.google.common.base.Preconditions;
 
 import beans.IngredientBean;
 import dataAccess.DAOManager;
-import dataAccess.JpaIngredient;
 
 public class Ingredient {
     private final IngredientBean ingredientBean;
-    private final JpaIngredient jpaIngredient;
 
-    public Ingredient()
-    {
-    	ingredientBean = new IngredientBean();
-    	jpaIngredient = new JpaIngredient();
+    public Ingredient() {
+        ingredientBean = new IngredientBean();
     }
-    
+
     public Ingredient(IngredientBean bean) {
         Preconditions.checkNotNull(bean, "IngredientBean");
-        jpaIngredient = new JpaIngredient();
         ingredientBean = bean;
     }
 
     public Ingredient(String name) {
         ingredientBean = new IngredientBean();
-        jpaIngredient = new JpaIngredient();
         setName(name);
+    }
+
+    public static Ingredient getIngredientById(long id) {
+        return DAOManager.getInstance().getIngredientById(id);
     }
 
     public void setName(String name) {
@@ -37,24 +35,24 @@ public class Ingredient {
     public String getName() {
         return ingredientBean.getName();
     }
-    
-    public String getPicture(){
-    	return ingredientBean.getPicture();
+
+    public String getPicture() {
+        return ingredientBean.getPicture();
     }
-    
-    public void setPicture(String picture){
-    	ingredientBean.setPicture(picture);
+
+    public void setPicture(String picture) {
+        ingredientBean.setPicture(picture);
     }
-    
-    public IngredientBean getBean(){
-    	return ingredientBean;
+
+    public IngredientBean getBean() {
+        return ingredientBean;
     }
-    
-    public void save (){
-    	DAOManager.getInstance().saveIngredient(ingredientBean);
+
+    public void save() {
+        DAOManager.getInstance().saveIngredient(ingredientBean);
     }
-    
-    public List<Ingredient> getAllIngredients(){
-    	return DAOManager.getInstance().getAllIngredients();
+
+    public List<Ingredient> getAllIngredients() {
+        return DAOManager.getInstance().getAllIngredients();
     }
 }

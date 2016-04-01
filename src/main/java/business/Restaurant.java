@@ -25,6 +25,10 @@ public class Restaurant {
         restaurantBean = bean;
     }
 
+    public static Restaurant getRestaurant(long id) {
+        return DAOManager.getInstance().getRestaurantById(id);
+    }
+
     public void save() {
         DAOManager.getInstance().saveRestaurant(restaurantBean);
     }
@@ -35,6 +39,10 @@ public class Restaurant {
 
     public void setBurgers(List<BurgerBean> burgers) {
         restaurantBean.setBurgers(burgers);
+    }
+
+    public long getId() {
+        return restaurantBean.getId();
     }
 
     public String getName() {
@@ -59,5 +67,17 @@ public class Restaurant {
 
     public void setLongitude(double longitude) {
         restaurantBean.setLongitude(longitude);
+    }
+
+    public RestaurantBean getBean() {
+        return restaurantBean;
+    }
+
+    public void addBurger(Burger burger) {
+        restaurantBean.addBurger(burger.getBean());
+    }
+
+    public void removeBurger(Burger burger) {
+        restaurantBean.removeBurger(burger.getBean());
     }
 }

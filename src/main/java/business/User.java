@@ -44,4 +44,16 @@ public class User {
     public boolean exists() {
         return userBean.getId() > 0l;
     }
+
+    public UserBean getBean() {
+        return userBean;
+    }
+
+    public void addGrade(Grade grade) {
+        userBean.addGrade(grade.getBean());
+    }
+
+    public void removeGrade(Grade grade) {
+        userBean.removeGrade(grade.getBean());
+    }
 }

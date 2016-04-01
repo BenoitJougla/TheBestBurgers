@@ -58,9 +58,9 @@ function getRestaurants() {
 	console.log("getRestaurant");
 	
 	var success_fct = function(data) {
-		$.each(data, function(i, item) {
-			var id = item.restaurantBean.id;
-			var name = item.restaurantBean.name;
+		$.each(data.restaurants, function(i, item) {
+			var id = item.id;
+			var name = item.name;
 			
 			if( $('#restaurant_' + id).length == 0 ) {
 				$('#listRestaurants').append('<option id=restaurant_' + id + ' value="' + id + '">' + name + '</option>');
@@ -79,7 +79,7 @@ function addRestaurant() {
 		latitude	: $('#restaurantLatitude').val(), 
 		longitude	: $('#restaurantLongitude').val()
 	};
-	var success_fct = function(data, status) { getIngredients(); };
+	var success_fct = function(data, status) { getRestaurants(); };
 	var error_fct = function(jqXHR, textStatus, errorThrown) { console.log(jqXHR); };
 	
 	addRequest('restaurant', data, success_fct, error_fct);
@@ -96,23 +96,30 @@ function addBurger() {
 		ingredientsTab.push(item.value);
 	});
 	
+	console.log(ingredientsTab);
+	
 	var originalityNote  = $('#originality').find('input:checked').val();
 	var qualityNote		 = $('#quality').find('input:checked').val();
 	var presentationNote = $('#presentation').find('input:checked').val();
 	var tastyNote		 = $('#tasty').find('input:checked').val();
 	
 	var data = {
-		name		 : $('#burgerName').val(), 
-		latitude	 : $('#burgerDescription').val(), 
-		longitude	 : $('#burgerPicture').val(),
-		ingredients	 : ingredientsTab,
-		restaurant	 : $('#listRestaurants').val(),
-		originality	 : originalityNote,
-		quality		 : qualityNote,
-		presentation : presentationNote,
-		tasty		 : tastyNote,
-		observation	 : $('#gradeDescription').val()
+		name			: $('#burgerName').val(), 
+		description		: $('#burgerDescription').val(), 
+		picture			: $('#burgerPicture').val(),
+		ingredients		: ingredientsTab,
+		restaurant		: $('#listRestaurants').val(),
+		originality		: originalityNote,
+		quality			: qualityNote,
+		presentation	: presentationNote,
+		tasty			: tastyNote,
+		observation		: $('#gradeDescription').val()
 	};
+	
+	var success_fct = function(data, status) { console.log("success !! : " + status + " " + data); };
+	var error_fct = function(jqXHR, textStatus, errorThrown) { console.log(jqXHR); };
+	
+	addRequest('burger', data, success_fct, error_fct);
 }
 
 $(document).ready(function() {

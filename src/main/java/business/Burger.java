@@ -1,11 +1,11 @@
 package business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.base.Preconditions;
 
 import beans.BurgerBean;
-import beans.GradeBean;
 import beans.IngredientBean;
 import dataAccess.DAOManager;
 
@@ -30,12 +30,24 @@ public class Burger {
         return burgerBean.getId() > 0l;
     }
 
-    public List<IngredientBean> getIngredients() {
-        return burgerBean.getIngredients();
+    public List<Ingredient> getIngredients() {
+        final List<Ingredient> list = new ArrayList<>();
+
+        burgerBean.getIngredients().forEach(bean -> {
+            list.add(new Ingredient(bean));
+        });
+
+        return list;
     }
 
-    public void setIngredients(List<IngredientBean> ingredients) {
-        burgerBean.setIngredients(ingredients);
+    public void setIngredients(List<Ingredient> ingredients) {
+        final List<IngredientBean> list = new ArrayList<>();
+
+        ingredients.forEach(ingredient -> {
+            list.add(ingredient.getBean());
+        });
+
+        burgerBean.setIngredients(list);
     }
 
     public long getId() {
@@ -75,11 +87,21 @@ public class Burger {
         ingredients.add(i);
         burgerBean.setIngredients(ingredients);
     }
-    
-    public void addGrade(GradeBean g) {
-        final List<GradeBean> grades = burgerBean.getGrades();
-        grades.add(g);
-        burgerBean.setGrades(grades);
+
+    public void addGrade(Grade g) {
+        burgerBean.addGrade(g.getBean());
+    }
+
+    public void removeGrade(Grade g) {
+        burgerBean.removeGrade(g.getBean());
+    }
+
+    public BurgerBean getBean() {
+        return burgerBean;
+    }
+
+    public Restaurant getRestaurant() {
+        return new Restaurant(burgerBean.getRestaurant());
     }
 
 }
