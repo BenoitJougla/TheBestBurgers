@@ -47,7 +47,7 @@ function addIngredient() {
 	var success_fct = function(data, status) { getIngredients(); };
 	var error_fct = function(jqXHR, textStatus, errorThrown) { console.log(jqXHR); };
 	
-	addRequest('ingredients', data, success_fct, error_fct);
+	addRequest('add/ingredients', data, success_fct, error_fct);
 }
 
 /*
@@ -82,7 +82,7 @@ function addRestaurant() {
 	var success_fct = function(data, status) { getRestaurants(); };
 	var error_fct = function(jqXHR, textStatus, errorThrown) { console.log(jqXHR); };
 	
-	addRequest('restaurant', data, success_fct, error_fct);
+	addRequest('add/restaurant', data, success_fct, error_fct);
 }
 
 /*
@@ -116,10 +116,10 @@ function addBurger() {
 		observation		: $('#gradeDescription').val()
 	};
 	
-	var success_fct = function(data, status) { console.log("success !! : " + status + " " + data); };
+	var success_fct = function(data, status) { window.location.assign("/the-best-burgers/") };
 	var error_fct = function(jqXHR, textStatus, errorThrown) { console.log(jqXHR); };
 	
-	addRequest('burger', data, success_fct, error_fct);
+	addRequest('add/burger', data, success_fct, error_fct);
 }
 
 $(document).ready(function() {

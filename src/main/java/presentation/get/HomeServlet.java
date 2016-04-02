@@ -1,4 +1,4 @@
-package presentation;
+package presentation.get;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,26 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import business.Restaurant;
+import business.Burger;
 import dataAccess.DAOManager;
 
-@WebServlet("/restaurants")
-public class RestaurantsServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/home", "/index.html" })
+public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        final List<Burger> burgerList = DAOManager.getInstance().getAllBurgers();
 
-        final List<Restaurant> restaurantsList = DAOManager.getInstance().getAllRestaurants();
+        req.setAttribute("burgers", burgerList);
 
-        req.setAttribute("restaurants", restaurantsList);
-
-        final RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/restaurants.jsp");
+        final RequestDispatcher rd = req.getRequestDispatcher("/home.jsp");
         rd.forward(req, resp);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	doGet(req, resp);
+        doGet(req, resp);
     }
 
 }

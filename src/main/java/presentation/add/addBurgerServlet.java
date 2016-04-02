@@ -1,4 +1,4 @@
-package presentation;
+package presentation.add;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,8 +17,8 @@ import business.Ingredient;
 import business.Restaurant;
 import business.User;
 
-@WebServlet("/burger")
-public class BurgerServlet extends HttpServlet {
+@WebServlet("/add/burger")
+public class addBurgerServlet extends HttpServlet {
 
     private Grade buildGrade(HttpServletRequest request) {
         final String originality_str = request.getParameter("originality");
@@ -100,18 +100,4 @@ public class BurgerServlet extends HttpServlet {
 
         response.sendRedirect(request.getContextPath() + "/");
     }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        // allow adding burger only if the user in logged in
-        final HttpSession session = req.getSession();
-
-        if (session == null || session.getAttribute("user") == null) {
-            req.getRequestDispatcher("/signin.jsp").forward(req, resp);
-        } else {
-            req.getRequestDispatcher("/WEB-INF/addBurger.jsp").forward(req, resp);
-        }
-    }
-
 }
