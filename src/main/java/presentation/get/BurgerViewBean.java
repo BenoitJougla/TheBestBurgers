@@ -1,6 +1,11 @@
 package presentation.get;
 
+import java.util.List;
+
 import business.Burger;
+import business.Grade;
+import business.Ingredient;
+import business.Restaurant;
 
 public class BurgerViewBean {
     private final Burger burger;
@@ -57,5 +62,17 @@ public class BurgerViewBean {
 
     public long getAverageTaste() {
         return average_taste;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return burger.getIngredients();
+    }
+
+    public Restaurant getRestaurant() {
+        return burger.getRestaurant();
+    }
+
+    public List<Grade> getGrades() {
+        return burger.getGrades();
     }
 }

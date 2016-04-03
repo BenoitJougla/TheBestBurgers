@@ -18,7 +18,7 @@ import business.Restaurant;
 import business.User;
 
 @WebServlet("/add/burger")
-public class addBurgerServlet extends HttpServlet {
+public class AddBurgerServlet extends HttpServlet {
 
     private Grade buildGrade(HttpServletRequest request) {
         final String originality_str = request.getParameter("originality");

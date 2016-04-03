@@ -15,7 +15,7 @@ import dataAccess.UniqueConstraintException;
 import presentation.ErrorResponse;
 
 @WebServlet("/add/ingredient")
-public class addIngredientServlet extends HttpServlet {
+public class AddIngredientServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -27,27 +27,14 @@
 								<h3>${burger.name}</h3>
 								<p>${burger.description}</p>
 								<div class="gradeHome">
-									<div id="originality">
-										<label class="gradeLabel">Originalité</label>
-										<label>${burger.averageOriginality}</label>
-									</div>
-									
-									<div id="quality">
-										<label class="gradeLabel">Qualité des ingrèdients</label>
-										<label>${burger.averageQuality}</label>
-									</div>
-									
-									<div id="presentation">
-										<label class="gradeLabel">Présentation</label>
-										<label>${burger.averagePresentation}</label>
-									</div>
-									
-									<div id="tasty">
-										<label class="gradeLabel">Goût</label>
-										<label>${burger.averageTaste}</label>
-									</div>
+									<jsp:include page="averagePage.jsp">
+										<jsp:param name="averageOriginality" value="${burger.averageOriginality}"/>
+										<jsp:param name="averageQuality" value="${burger.averageQuality}"/>
+										<jsp:param name="averagePresentation" value="${burger.averagePresentation}"/>
+										<jsp:param name="averageTaste" value="${burger.averageTaste}"/>
+									</jsp:include>
 								</div>
-								<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+								<a href="detailBurger?id=${burger.id}" class="btn btn-primary" role="button">Donner votre avis</a>
 							</div>
 						</div>
 				  	</div>

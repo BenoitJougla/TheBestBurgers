@@ -299,3 +299,7 @@ a {
 .inputError {
 	border-color: red;
 }
+
+.readonly {
+	pointer-events: none;
+}

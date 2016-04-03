@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import business.Restaurant;
 
 @WebServlet("/add/restaurant")
-public class addRestaurantServlet extends HttpServlet {
+public class AddRestaurantServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
