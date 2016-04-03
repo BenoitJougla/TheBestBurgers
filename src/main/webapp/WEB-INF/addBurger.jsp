@@ -34,6 +34,7 @@
 						<div id="newIngredient" style="display: none">
 							<h1>Nouveau ingrédient</h1>
 							<input id="ingredientName" type="text" placeholder="Name">
+							<label id="ingredientNameError" class="labelError"></label>
 							<p><input id="ingredientPicture" type="text" placeholder="Picture">(facultatif)</p>
 							<button onclick = "addIngredient()">Valider</button>
 						</div>

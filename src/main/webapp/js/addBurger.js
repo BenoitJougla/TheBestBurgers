@@ -44,10 +44,22 @@ function getIngredients() {
 
 function addIngredient() {
 	var data = {name : $('#ingredientName').val(),picture : $('#ingredientPicture').val()};
-	var success_fct = function(data, status) { getIngredients(); };
-	var error_fct = function(jqXHR, textStatus, errorThrown) { console.log(jqXHR); };
 	
-	addRequest('add/ingredients', data, success_fct, error_fct);
+	var success_fct = function(data, status) {
+		$('#ingredientNameError').text("");
+		$('#ingredientName').removeClass("inputError");
+		getIngredients(); 
+	};
+	
+	var error_fct = function(jqXHR, textStatus, errorThrown) { 
+		var json = JSON.parse( jqXHR.responseText );
+		
+		console.log(json.field);
+		$('#' + json.field+"Error").text(json.message);
+		$('#' + json.field).addClass("inputError");
+	};
+	
+	addRequest('add/ingredient', data, success_fct, error_fct);
 }
 
 /*
