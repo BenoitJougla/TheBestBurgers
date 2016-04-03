@@ -104,4 +104,14 @@ public class Burger {
         return new Restaurant(burgerBean.getRestaurant());
     }
 
+    public List<Grade> getGrades() {
+        final List<Grade> grades = new ArrayList<>();
+
+        burgerBean.getGrades().forEach(bean -> {
+            grades.add(new Grade(bean));
+        });
+
+        return grades;
+    }
+
 }

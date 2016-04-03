@@ -264,6 +264,7 @@ a {
 .rating {
    direction: rtl;
    display: inline-block;
+   font-size: smaller;
 }
 
 .rating label {

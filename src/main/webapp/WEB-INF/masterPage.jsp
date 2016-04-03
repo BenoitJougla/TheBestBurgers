@@ -30,7 +30,6 @@
 									<c:otherwise>
 										<li><a href="#">Bonjour <strong>${user.name}</strong></a></li>
 										<li><a href="${pageContext.request.contextPath}/burger">Ajouter un Burger</a></li>
-										<li><a href="${pageContext.request.contextPath}/restaurant">Ajouter un Restaurant</a></li>
 										<li><a href="#">Modifier un Burger</a></li>
 										<li><a href="#">Modifier un Restaurant</a></li>
 										<li role="separator" class="divider"></li>

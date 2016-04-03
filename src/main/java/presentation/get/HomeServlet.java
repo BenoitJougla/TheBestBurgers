@@ -1,6 +1,7 @@
 package presentation.get;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -20,11 +21,15 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final List<Burger> burgerList = DAOManager.getInstance().getAllBurgers();
 
-        req.setAttribute("burgers", burgerList);
+        final List<BurgerViewBean> burgers = new ArrayList<>();
+        burgerList.forEach(burger -> {
+            burgers.add(new BurgerViewBean(burger));
+        });
 
-        final RequestDispatcher rd = req.getRequestDispatcher("/home.jsp");
+        req.setAttribute("burgers", burgers);
+
+        final RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/home.jsp");
         rd.forward(req, resp);
-
     }
 
     @Override
