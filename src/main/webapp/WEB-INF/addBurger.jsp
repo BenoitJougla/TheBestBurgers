@@ -59,7 +59,12 @@
 					<fieldset>
 						<legend>Noter le burger</legend>
 						
-						<%@include file="gradePage.jsp" %>
+						<jsp:include page="gradePage.jsp">
+							<jsp:param name="idOriginality" value="originality"/>
+							<jsp:param name="idQuality" value="quality"/>
+							<jsp:param name="idPresentation" value="presentation"/>
+							<jsp:param name="idTasty" value="tasty"/>
+						</jsp:include>
 						
 						<textarea id="gradeDescription" type="text"  class="input" placeholder="Observation"></textarea>
 					</fieldset>

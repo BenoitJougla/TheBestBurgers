@@ -46,7 +46,14 @@
 				
 				<div id="gradeBurger">
 					<h2>Noter le burger</h2>
-					<%@include file="gradePage.jsp" %>
+					
+					<jsp:include page="gradePage.jsp">
+						<jsp:param name="idOriginality" value="originality"/>
+						<jsp:param name="idQuality" value="quality"/>
+						<jsp:param name="idPresentation" value="presentation"/>
+						<jsp:param name="idTasty" value="tasty"/>
+					</jsp:include>
+					
 					<textarea id="gradeDescription" type="text"  class="input" placeholder="Observation"></textarea>
 					<button class="btn btn-primary btn-lg" role="button" onclick = "addGrade(${burger.id})">Commenter</button>
 				</div>
@@ -59,9 +66,16 @@
 						<div class="readonly">
 							<jsp:include page="gradePage.jsp">
 								<jsp:param name="originality" value="${grade.originality}"/>
+								<jsp:param name="idOriginality" value="${grade.id}_originality"/>
+								
 								<jsp:param name="quality" value="${grade.quality}"/>
+								<jsp:param name="idQuality" value="${grade.id}_quality"/>
+								
 								<jsp:param name="presentation" value="${grade.presentation}"/>
+								<jsp:param name="idPresentation" value="${grade.id}_presentation"/>
+								
 								<jsp:param name="taste" value="${grade.taste}"/>
+								<jsp:param name="idTasty" value="${grade.id}_tasty"/>
 							</jsp:include> 
 						</div>
 					</c:forEach>
