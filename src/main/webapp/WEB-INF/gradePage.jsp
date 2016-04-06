@@ -7,6 +7,7 @@
 		<jsp:param name="value" value="${param.originality}"/>
 	</jsp:include>
 </div>
+<label id="originalityError" class="labelError"></label>
 
 <div id="quality">
 	<label class="gradeLabel">Qualité des ingrédients</label>
@@ -15,6 +16,7 @@
 		<jsp:param name="value" value="${param.quality}"/>
 	</jsp:include>
 </div>
+<label id="qualityError" class="labelError"></label>
 
 <div id="presentation">
 	<label class="gradeLabel">Présentation</label>
@@ -23,6 +25,7 @@
 		<jsp:param name="value" value="${param.presentation}"/>
 	</jsp:include>
 </div>
+<label id="presentationError" class="labelError"></label>
 
 <div id="tasty">
 	<label class="gradeLabel">Goût</label>
@@ -31,3 +34,4 @@
 		<jsp:param name="value" value="${param.taste}"/>
 	</jsp:include>
 </div>
+<label id="tastyError" class="labelError"></label>

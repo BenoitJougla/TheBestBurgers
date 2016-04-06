@@ -21,8 +21,13 @@
 					<fieldset>
 						<legend>Ajouter un nouveau burger</legend>
 						<input id="burgerName" class="input" type="text" placeholder="Nom" required autofocus>
+						<label id="burgerNameError" class="labelError"></label>
+						
 						<textarea id="burgerDescription" class="input" type="text" placeholder="Description" required></textarea>
+						<label id="burgerDescriptionError" class="labelError"></label>
+						
 						<input id="burgerPicture" class="input" type="text" placeholder="URL de la photo" required>
+						<label id="burgerPictureError" class="labelError"></label>
 					</fieldset>
 					
 					<fieldset>
@@ -62,11 +67,12 @@
 						<jsp:include page="gradePage.jsp">
 							<jsp:param name="idOriginality" value="originality"/>
 							<jsp:param name="idQuality" value="quality"/>
-							<jsp:param name="idPresentation" value="presentation"/>
+							<jsp:param name="idPresentation" value="presentation"/>							
 							<jsp:param name="idTasty" value="tasty"/>
 						</jsp:include>
 						
 						<textarea id="gradeDescription" type="text"  class="input" placeholder="Observation"></textarea>
+						<label id="gradeDescriptionError" class="labelError"></label>
 					</fieldset>
 					
 					<button class="btn-primary" onclick="addBurger()">Ajouter</button>

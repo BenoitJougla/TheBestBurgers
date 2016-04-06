@@ -100,8 +100,23 @@ function addRestaurant() {
 /*
  * Burger
  */
+var errors;
+
+function cleanErrors() {
+	if(errors == undefined)
+		return;
+	
+	errors.forEach(
+		function(json, index, array) {
+			$('#' + json.field+"Error").text("");
+			$('#' + json.field).removeClass("inputError");
+		}
+	);
+}
 
 function addBurger() {
+	cleanErrors();
+	
 	var ingredientsList = $('#listIngredients').find('input:checked');
 	var ingredientsTab = [];
 	$.each(ingredientsList, function(i, item) {
@@ -129,7 +144,18 @@ function addBurger() {
 	};
 	
 	var success_fct = function(data, status) { window.location.assign("/the-best-burgers/") };
-	var error_fct = function(jqXHR, textStatus, errorThrown) { console.log(jqXHR); };
+	var error_fct = function(jqXHR, textStatus, errorThrown) { 
+		var json = JSON.parse( jqXHR.responseText );
+		
+		errors = json.errors;
+		
+		json.errors.forEach(
+			function(json, index, array) {
+				$('#' + json.field+"Error").text(json.message);
+				$('#' + json.field).addClass("inputError");
+			}
+		);
+	};
 	
 	addRequest('add/burger', data, success_fct, error_fct);
 }

@@ -16,38 +16,78 @@ import business.Grade;
 import business.Ingredient;
 import business.Restaurant;
 import business.User;
+import dataAccess.UniqueConstraintException;
+import presentation.ErrorResponse;
 
 @WebServlet("/add/burger")
 public class AddBurgerServlet extends HttpServlet {
 
-    private Grade buildGrade(HttpServletRequest request) {
+    private Grade buildGrade(HttpServletRequest request, ErrorJsonBuilder json) {
+        boolean error = false;
+
         final String originality_str = request.getParameter("originality");
-        final int originality = Integer.parseInt(originality_str);
+        int originality = 0;
+        try {
+            originality = Integer.parseInt(originality_str);
+        } catch (final NumberFormatException e) {
+            error = true;
+            json.add("originality", "Sélectionner une valeur entre 1 et 5");
+        }
 
         final String quality_str = request.getParameter("quality");
-        final int quality = Integer.parseInt(quality_str);
+        int quality = 0;
+        try {
+            quality = Integer.parseInt(quality_str);
+        } catch (final NumberFormatException e) {
+            error = true;
+            json.add("quality", "Sélectionner une valeur entre 1 et 5");
+        }
 
         final String presentation_str = request.getParameter("presentation");
-        final int presentation = Integer.parseInt(presentation_str);
+        int presentation = 0;
+        try {
+            presentation = Integer.parseInt(presentation_str);
+        } catch (final NumberFormatException e) {
+            error = true;
+            json.add("presentation", "Sélectionner une valeur entre 1 et 5");
+        }
 
         final String tasty_str = request.getParameter("tasty");
-        final int taste = Integer.parseInt(tasty_str);
+        int taste = 0;
+        try {
+            taste = Integer.parseInt(tasty_str);
+        } catch (final NumberFormatException e) {
+            error = true;
+            json.add("tasty", "Sélectionner une valeur entre 1 et 5");
+        }
 
         final String observation = request.getParameter("observation");
+        if (observation == null || observation.isEmpty()) {
+            error = true;
+            json.add("gradeDescription", "Veuiller renseigner ce champ");
+        }
 
-        final Grade grade = new Grade();
-        grade.setOriginality(originality);
-        grade.setQuality(quality);
-        grade.setPresentation(presentation);
-        grade.setTaste(taste);
-        grade.setObservation(observation);
+        if (!error) {
+            final Grade grade = new Grade();
+            grade.setOriginality(originality);
+            grade.setQuality(quality);
+            grade.setPresentation(presentation);
+            grade.setTaste(taste);
+            grade.setObservation(observation);
 
-        // User
-        final HttpSession session = request.getSession();
-        final User user = (User) session.getAttribute("user");
-        user.addGrade(grade);
+            // User
+            final HttpSession session = request.getSession();
+            final User user = (User) session.getAttribute("user");
+            if (user == null) {
+                json.add("errorMsg", "Vous devez être connecter pour ajouter un burger");
+                return null;
+            } else {
+                user.addGrade(grade);
+                return grade;
+            }
+        }
 
-        return grade;
+        return null;
     }
 
     private List<Ingredient> buildIngredients(HttpServletRequest request) {
@@ -55,25 +95,51 @@ public class AddBurgerServlet extends HttpServlet {
 
         final List<Ingredient> ingredients = new ArrayList<>();
 
-        for (final String str : ingredients_str) {
-            final long id = Long.parseLong(str);
-            ingredients.add(Ingredient.getIngredientById(id));
+        if (ingredients_str != null) {
+            for (final String str : ingredients_str) {
+                final long id = Long.parseLong(str);
+                ingredients.add(Ingredient.getIngredientById(id));
+            }
         }
 
         return ingredients;
     }
 
-    private Burger buildBurger(HttpServletRequest request) {
+    private Burger buildBurger(HttpServletRequest request, ErrorJsonBuilder json) {
+        boolean error = false;
+
         // Grade
-        final Grade grade = buildGrade(request);
+        final Grade grade = buildGrade(request, json);
+
+        if (grade == null) {
+            error = true;
+        }
 
         // Ingredients
         final List<Ingredient> ingredients = buildIngredients(request);
 
         // Burger
         final String name = request.getParameter("name");
+        if (name == null || name.isEmpty()) {
+            json.add("burgerName", " Le nom doit être renseigné");
+            error = true;
+        }
+
         final String description = request.getParameter("description");
+        if (name == null || name.isEmpty()) {
+            json.add("burgerDescription", "Ce champ doit être renseigné");
+            error = true;
+        }
+
         final String picture = request.getParameter("picture");
+        if (name == null || name.isEmpty()) {
+            json.add("burgerPicture", "Ce champ doit être renseigné");
+            error = true;
+        }
+
+        if (error) {
+            return null;
+        }
 
         final Burger burger = new Burger();
         burger.setName(name);
@@ -82,20 +148,34 @@ public class AddBurgerServlet extends HttpServlet {
         burger.setIngredients(ingredients);
         burger.addGrade(grade);
 
+        try {
+            burger.save();
+        } catch (final UniqueConstraintException e) {
+            json.add("burgerName", "Le burger " + name + " existe déjà");
+            return null;
+        }
+
         return burger;
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        final ErrorJsonBuilder json = new ErrorJsonBuilder();
+
         // Burger
-        final Burger burger = buildBurger(request);
+        final Burger burger = buildBurger(request, json);
 
         // Restaurant
         final String restaurant_str = request.getParameter("restaurant");
         final long restaurantId = Long.parseLong(restaurant_str);
         final Restaurant restaurant = Restaurant.getRestaurant(restaurantId);
-        restaurant.addBurger(burger);
 
+        if (burger == null || restaurant == null) {
+            ErrorResponse.sendError(HttpServletResponse.SC_BAD_REQUEST, json.build(), response);
+            return;
+        }
+
+        restaurant.addBurger(burger);
         restaurant.save();
 
         response.sendRedirect(request.getContextPath() + "/");
