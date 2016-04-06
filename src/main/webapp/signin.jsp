@@ -17,6 +17,7 @@
 		<div class="container">
 		
 			<form id="central-form" class="form-signin" method="post" action="${pageContext.request.contextPath}/signin">
+				<input type="hidden" name="from" value="${form}">
 				<h2 class="form-signin-heading">Se connecter</h2>
 				
 				<label for="inputName" class="sr-only">Pseudonyme</label>

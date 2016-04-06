@@ -44,19 +44,26 @@
 					<label>${burger.restaurant.name}</label>
 				</div>
 				
-				<div id="gradeBurger">
-					<h2>Noter le burger</h2>
-					
-					<jsp:include page="gradePage.jsp">
-						<jsp:param name="idOriginality" value="originality"/>
-						<jsp:param name="idQuality" value="quality"/>
-						<jsp:param name="idPresentation" value="presentation"/>
-						<jsp:param name="idTasty" value="tasty"/>
-					</jsp:include>
-					
-					<textarea id="gradeDescription" type="text"  class="input" placeholder="Observation"></textarea>
-					<button class="btn btn-primary btn-lg" role="button" onclick = "addGrade(${burger.id})">Commenter</button>
-				</div>
+				<c:choose>
+					<c:when test="${empty user}">
+						<a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/signin?from=/detailBurger?id=${burger.id}">Donner votre avis</a>
+					</c:when>    
+					<c:otherwise>
+						<div id="gradeBurger">
+							<h2>Noter le burger</h2>
+							
+							<jsp:include page="gradePage.jsp">
+								<jsp:param name="idOriginality" value="originality"/>
+								<jsp:param name="idQuality" value="quality"/>
+								<jsp:param name="idPresentation" value="presentation"/>
+								<jsp:param name="idTasty" value="tasty"/>
+							</jsp:include>
+							
+							<textarea id="gradeDescription" type="text"  class="input" placeholder="Observation"></textarea>
+							<button class="btn btn-primary btn-lg" role="button" onclick = "addGrade(${burger.id})">Commenter</button>
+						</div>
+					</c:otherwise>
+				</c:choose>
 				
 				<div>
 					<h2>Commentaires :</h2>
