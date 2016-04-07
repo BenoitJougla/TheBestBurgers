@@ -16,13 +16,11 @@ public class AddRestaurantServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String name = req.getParameter("name");
-        final String latitude = req.getParameter("latitude");
-        final String longitude = req.getParameter("longitude");
 
         final Restaurant restaurant = new Restaurant();
         restaurant.setName(name);
-        restaurant.setLatitude(Double.parseDouble(latitude));
-        restaurant.setLongitude(Double.parseDouble(longitude));
+        restaurant.setLatitude(0.0);
+        restaurant.setLongitude(0.0);
 
         try {
             restaurant.save();

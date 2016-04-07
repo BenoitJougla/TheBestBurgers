@@ -54,9 +54,6 @@
 						<div id="newRestaurant" style="display: none">
 							<h1>Nouveau Restaurant</h1>
 							<input id="restaurantName" class="input" type="text" placeholder="Nom" required autofocus>
-							<p>Localisation du restaurant :</p>
-							<input id="restaurantLatitude" class="input" type="text" placeholder="Latitude" required>
-							<input id="restaurantLongitude" class="input" type="text" placeholder="Longitude" required>
 							<button onclick="addRestaurant()">Valider</button>
 						</div>
 					</fieldset>

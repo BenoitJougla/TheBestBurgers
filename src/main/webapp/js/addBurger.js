@@ -87,9 +87,7 @@ function getRestaurants() {
 
 function addRestaurant() {
 	var data = {
-		name		: $('#restaurantName').val(), 
-		latitude	: $('#restaurantLatitude').val(), 
-		longitude	: $('#restaurantLongitude').val()
+		name		: $('#restaurantName').val()
 	};
 	var success_fct = function(data, status) { getRestaurants(); };
 	var error_fct = function(jqXHR, textStatus, errorThrown) { console.log(jqXHR); };

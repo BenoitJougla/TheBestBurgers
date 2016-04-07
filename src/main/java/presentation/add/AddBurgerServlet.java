@@ -16,7 +16,6 @@ import business.Grade;
 import business.Ingredient;
 import business.Restaurant;
 import business.User;
-import dataAccess.UniqueConstraintException;
 import presentation.ErrorResponse;
 
 @WebServlet("/add/burger")
@@ -147,13 +146,6 @@ public class AddBurgerServlet extends HttpServlet {
         burger.setPicture(picture);
         burger.setIngredients(ingredients);
         burger.addGrade(grade);
-
-        try {
-            burger.save();
-        } catch (final UniqueConstraintException e) {
-            json.add("burgerName", "Le burger " + name + " existe déjà");
-            return null;
-        }
 
         return burger;
     }
