@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import business.Restaurant;
+import presentation.ErrorResponse;
 
 @WebServlet("/add/restaurant")
 public class AddRestaurantServlet extends HttpServlet {
@@ -25,7 +26,9 @@ public class AddRestaurantServlet extends HttpServlet {
         try {
             restaurant.save();
         } catch (final RuntimeException e) {
-            resp.sendError(500, e.getMessage());
+            final ErrorJsonBuilder json = new ErrorJsonBuilder();
+            json.add("restaurantName", "Ce restaurant existe déjà");
+            ErrorResponse.sendError(HttpServletResponse.SC_BAD_REQUEST, json.build(), resp);
         }
     }
 

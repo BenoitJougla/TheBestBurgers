@@ -54,6 +54,7 @@
 						<div id="newRestaurant" style="display: none">
 							<h1>Nouveau Restaurant</h1>
 							<input id="restaurantName" class="input" type="text" placeholder="Nom" required autofocus>
+							<label id="restaurantNameError" class="labelError"></label>
 							<button onclick="addRestaurant()">Valider</button>
 						</div>
 					</fieldset>

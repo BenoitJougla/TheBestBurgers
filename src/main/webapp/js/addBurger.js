@@ -89,8 +89,22 @@ function addRestaurant() {
 	var data = {
 		name		: $('#restaurantName').val()
 	};
-	var success_fct = function(data, status) { getRestaurants(); };
-	var error_fct = function(jqXHR, textStatus, errorThrown) { console.log(jqXHR); };
+	var success_fct = function(data, status) {
+		$('#restaurantNameError').text("");
+		$('#restaurantName').removeClass("inputError");
+		getRestaurants(); 
+	};
+	
+	var error_fct = function(jqXHR, textStatus, errorThrown) { 
+		var json = JSON.parse( jqXHR.responseText );
+		
+		json.errors.forEach(
+			function(json, index, array) {
+				console.log(json);
+				$('#' + json.field+"Error").text(json.message);
+				$('#' + json.field).addClass("inputError");
+		})
+	};
 	
 	addRequest('add/restaurant', data, success_fct, error_fct);
 }
