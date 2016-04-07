@@ -12,7 +12,7 @@
                 <div id="collapse-text" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="${pageContext.request.contextPath}/restaurants" class="trans-300">Restaurants</a></li>
-                    <li><a href="#about" class="trans-300">Top</a></li>
+                    <li><a class="trans-300" href="${pageContext.request.contextPath}/top" >Top</a></li>
                     <li><a href="#contact" class="trans-300">Localisation</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">

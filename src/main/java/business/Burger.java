@@ -9,7 +9,7 @@ import beans.BurgerBean;
 import beans.IngredientBean;
 import dataAccess.DAOManager;
 
-public class Burger {
+public class Burger implements Comparable<Burger> {
 
     private final BurgerBean burgerBean;
 
@@ -113,5 +113,35 @@ public class Burger {
 
         return grades;
     }
+
+	@Override
+	public int compareTo(Burger o) {
+		
+		List<Grade> listGrade1 = this.getGrades();
+		List<Grade> listGrade2 = o.getGrades();
+		
+		int total1 = 0;
+		int total2 = 0;
+		
+		for(Grade g : listGrade1){
+			total1 += g.getOriginality();
+			total1 += g.getPresentation();
+			total1 += g.getQuality();
+			total1 += g.getTaste();
+		}
+		
+		total1 /= listGrade1.size();
+		
+		for(Grade g : listGrade2){
+			total2 += g.getOriginality();
+			total2 += g.getPresentation();
+			total2 += g.getQuality();
+			total2 += g.getTaste();
+		}
+		
+		total2 /= listGrade2.size();
+		
+		return total2 - total1;
+	}
 
 }
