@@ -67,6 +67,7 @@
 				
 				<div>
 					<h2>Commentaires :</h2>
+					<label>${burger.nbGrades} avis</label>
 					<c:forEach items="${burger.grades}" var="grade">
 						<label>${grade.user.name}</label>
 						<label>${grade.observation}</label>

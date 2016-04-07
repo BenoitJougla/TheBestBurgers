@@ -75,4 +75,8 @@ public class BurgerViewBean {
     public List<Grade> getGrades() {
         return burger.getGrades();
     }
+
+    public int getNbGrades() {
+        return nbGrades;
+    }
 }

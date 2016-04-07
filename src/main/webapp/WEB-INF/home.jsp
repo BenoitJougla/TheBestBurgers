@@ -35,6 +35,7 @@
 									</jsp:include>
 								</div>
 								<a href="detailBurger?id=${burger.id}" class="btn btn-primary" role="button">Donner votre avis</a>
+								<label>${burger.nbGrades} avis</label>
 							</div>
 						</div>
 				  	</div>
