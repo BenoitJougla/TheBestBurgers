@@ -35,6 +35,12 @@ public class RestaurantServlet extends HttpServlet {
         final JsonObjectBuilder job = Json.createObjectBuilder();
         job.add("restaurants", jab);
 
+        // Set standard HTTP/1.1 no-cache headers.
+        resp.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+
+        // Set standard HTTP/1.0 no-cache header.
+        resp.setHeader("Pragma", "no-cache");
+
         Json.createWriter(resp.getOutputStream()).writeObject(job.build());
     }
 }

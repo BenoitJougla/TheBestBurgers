@@ -69,22 +69,26 @@
 					<h2>Commentaires :</h2>
 					<label>${burger.nbGrades} avis</label>
 					<c:forEach items="${burger.grades}" var="grade">
-						<label>${grade.user.name}</label>
-						<label>${grade.observation}</label>
-						<div class="readonly">
-							<jsp:include page="gradePage.jsp">
-								<jsp:param name="originality" value="${grade.originality}"/>
-								<jsp:param name="idOriginality" value="${grade.id}_originality"/>
-								
-								<jsp:param name="quality" value="${grade.quality}"/>
-								<jsp:param name="idQuality" value="${grade.id}_quality"/>
-								
-								<jsp:param name="presentation" value="${grade.presentation}"/>
-								<jsp:param name="idPresentation" value="${grade.id}_presentation"/>
-								
-								<jsp:param name="taste" value="${grade.taste}"/>
-								<jsp:param name="idTasty" value="${grade.id}_tasty"/>
-							</jsp:include> 
+						<div class="comment">
+							<div>
+								<label class="comment-author-name">${grade.user.name}</label>
+								<label>${grade.observation}</label>
+							</div>
+							<div class="readonly">
+								<jsp:include page="gradePage.jsp">
+									<jsp:param name="originality" value="${grade.originality}"/>
+									<jsp:param name="idOriginality" value="${grade.id}_originality"/>
+									
+									<jsp:param name="quality" value="${grade.quality}"/>
+									<jsp:param name="idQuality" value="${grade.id}_quality"/>
+									
+									<jsp:param name="presentation" value="${grade.presentation}"/>
+									<jsp:param name="idPresentation" value="${grade.id}_presentation"/>
+									
+									<jsp:param name="taste" value="${grade.taste}"/>
+									<jsp:param name="idTasty" value="${grade.id}_tasty"/>
+								</jsp:include> 
+							</div>
 						</div>
 					</c:forEach>
 				</div>

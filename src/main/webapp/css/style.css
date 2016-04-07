@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1";
+@CHARSET "UTF-8";
 
 /*Global*/
 body {
@@ -302,4 +302,14 @@ a {
 
 .readonly {
 	pointer-events: none;
+}
+
+.comment {
+	border-top-style: groove;
+}
+
+.comment-author-name {
+    font-size: xx-large;
+    display: block;
+    border: black;
 }
