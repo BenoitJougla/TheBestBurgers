@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<!-- Include all the css and js file -->
 	<%@include file="header.jsp" %>
-	<title>Insert title here</title>
+	<title>Nos Restaurants</title>
 </head>
 <body>
 
