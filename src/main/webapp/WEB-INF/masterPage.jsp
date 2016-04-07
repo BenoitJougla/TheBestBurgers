@@ -13,7 +13,6 @@
                   <ul class="nav navbar-nav">
                     <li class="active"><a href="${pageContext.request.contextPath}/restaurants" class="trans-300">Restaurants</a></li>
                     <li><a class="trans-300" href="${pageContext.request.contextPath}/top" >Top</a></li>
-                    <li><a href="#contact" class="trans-300">Localisation</a></li>
                   </ul>
                   <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -30,10 +29,7 @@
 									<c:otherwise>
 										<li><a href="#">Bonjour <strong>${user.name}</strong></a></li>
 										<li><a href="${pageContext.request.contextPath}/burger">Ajouter un Burger</a></li>
-										<li><a href="#">Modifier un Burger</a></li>
-										<li><a href="#">Modifier un Restaurant</a></li>
 										<li role="separator" class="divider"></li>
-										<li><a href="#">Mes commentaires</a></li>
 										<li><a href="${pageContext.request.contextPath}/logout">Déconnexion</a></li>
 									</c:otherwise>
 								</c:choose>
